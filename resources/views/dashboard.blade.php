@@ -1,4 +1,4 @@
-<x-layouts.app>
+<x-app-layout>
     <style>
         /* Estilos generales */
         .container {
@@ -145,4 +145,4 @@
             </div>
         </div>
     </div>
-</x-layouts.app>
+</x-app-layout>
