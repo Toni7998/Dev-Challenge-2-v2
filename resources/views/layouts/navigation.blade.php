@@ -16,11 +16,7 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    
-                    <!-- Shopping List Link -->
-                    <x-nav-link :href="route('shopping_list.index')" :active="request()->routeIs('shopping_list.*')">
-                        {{ __('Shopping List') }}
-                    </x-nav-link>
+
                 </div>
             </div>
 
@@ -77,9 +73,6 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
             
-            <x-responsive-nav-link :href="route('shopping_list.index')" :active="request()->routeIs('shopping_list.*')">
-                {{ __('Shopping List') }}
-            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
