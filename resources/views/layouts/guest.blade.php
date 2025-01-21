@@ -24,6 +24,7 @@
             </a>
         </div>
 
+        <!-- Formulario -->
         <div
             class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
             {{ $slot }}
@@ -31,22 +32,22 @@
 
         <!-- SSO Google -->
         <div
-            class="w-full sm:max-w-md mt-6 px-6 py-4 bg-light-200 dark:bg-dark-200 shadow-md overflow-hidden sm:rounded-lg text-center">
-            <a href="/google-auth/redirect" class="text-sm text-light-500 dark:text-gray-400 hover:underline">
+            class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
+            <a href="/google-auth/redirect"
+                class="block w-full py-2 px-4 bg-indigo-600 text-white font-semibold text-center rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
                 SSO con Google
             </a>
         </div>
 
         <!-- SSO Twitter -->
         <div
-            class="w-full sm:max-w-md mt-6 px-6 py-4 bg-light-200 dark:bg-dark-200 shadow-md overflow-hidden sm:rounded-lg text-center">
-            <a href="{{ url('auth/twitter') }}" class="text-sm text-light-500 dark:text-gray-400 hover:underline">
+            class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
+            <a href="{{ url('auth/twitter') }}"
+                class="block w-full py-2 px-4 bg-blue-500 text-white font-semibold text-center rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50">
                 SSO con Twitter
             </a>
         </div>
     </div>
-
-
 </body>
 
 </html>
