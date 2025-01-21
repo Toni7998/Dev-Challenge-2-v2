@@ -6,7 +6,8 @@ use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Controllers\ShoppingListController;
+use App\Http\Controllers\FirebaseController;
 /*
 |---------------------------------------------------------------------------
 | Web Routes
@@ -93,3 +94,13 @@ Route::get('auth/github/callback', function () {
 
 // Cargar rutas adicionales de autenticación
 require __DIR__ . '/auth.php';
+
+//  Listas
+Route::get('/shopping_list', [ShoppingListController::class, 'index'])->name('shopping_list.index');
+Route::post('/shopping_list/add', [ShoppingListController::class, 'addItem'])->name('shopping_list.add');
+Route::post('/shopping_list/add_category', [ShoppingListController::class, 'addCategory'])->name('shopping_list.add_category');
+Route::post('/shopping_list/delete', [ShoppingListController::class, 'deleteItem'])->name('shopping_list.delete');
+
+//Ruta para el firebase
+Route::get('/firebase/store', [FirebaseController::class, 'storeData']);
+Route::get('/firebase/get', [FirebaseController::class, 'getData']);
