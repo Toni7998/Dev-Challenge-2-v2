@@ -24,22 +24,24 @@
 
         /* Tarjetas */
         .card {
-            background: #fff;
-            border: 1px solid #e2e8f0;
+            background: #2a3b47;
+            border: 1px solid #2a3b47;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             flex: 1;
             max-width: 400px;
             overflow: hidden;
+            color:rgb(216, 216, 216);
         }
 
         .card-header {
-            background-color: #f7fafc;
-            border-bottom: 1px solid #e2e8f0;
+            background-color: #1a252f;
+            border-bottom: 1px solid #1a252f;
             padding: 12px 16px;
+            text-align: center;
             font-size: 1.25rem;
             font-weight: bold;
-            color: #2d3748;
+            color:rgb(255, 255, 255);
         }
 
         .card-body {
@@ -49,7 +51,7 @@
         .card-body h6 {
             margin: 0 0 10px;
             font-size: 1rem;
-            color: #4a5568;
+            color:rgb(216, 216, 216);
         }
 
         .card-body p {
@@ -61,7 +63,7 @@
             margin-top: 10px;
             padding: 10px 20px;
             background-color: #3182ce;
-            color: #fff;
+            color:rgb(255, 255, 255);
             border-radius: 6px;
             text-decoration: none;
             font-size: 0.9rem;
@@ -71,38 +73,6 @@
 
         .btn:hover {
             background-color: #2b6cb0;
-        }
-
-        /* Lista de actividades */
-        .activity-list {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .activity-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        .activity-item:last-child {
-            border-bottom: none;
-        }
-
-        .activity-item span {
-            font-size: 0.875rem;
-            color: #4a5568;
-        }
-
-        .activity-time {
-            font-size: 0.75rem;
-            color: #718096;
-        }
-
-        .text-center {
-            text-align: center;
         }
     </style>
 
