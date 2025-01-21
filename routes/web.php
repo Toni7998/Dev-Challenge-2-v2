@@ -48,7 +48,8 @@ Route::get('/dashboard', function () {
     $user = auth()->user();  // Obtén el usuario autenticado
     $recentActivities = []; // Aquí deberías agregar la lógica para obtener las actividades recientes
     return view('dashboard', compact('user', 'recentActivities'));
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
 
 // Rutas de perfil, protegidas por middleware de autenticación
 Route::middleware('auth')->group(function () {
@@ -65,11 +66,30 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+//  Rutas SSO Github
+Route::get('auth/github', function () {
+    return Socialite::driver('github')->redirect();
+});
 
-// Rutas de autenticación de Twitter
-Route::get('auth/twitter', [LoginController::class, 'redirectToTwitter'])->name('auth.twitter');
-Route::get('auth/twitter/callback', [LoginController::class, 'handleTwitterCallback']);
-Route::post('/confirm-login/{userId}', [LoginController::class, 'confirmLogin'])->name('confirm.login');
+Route::get('auth/github/callback', function () {
+    $githubUser = Socialite::driver('github')->user();
+
+    // Buscar usuario por email o crear uno nuevo
+    $user = User::updateOrCreate(
+        ['email' => $githubUser->getEmail()],
+        [
+            'name' => $githubUser->getName() ?? $githubUser->getNickname(),
+            'email' => $githubUser->getEmail(),
+            'github_id' => $githubUser->getId(),
+            'avatar' => $githubUser->getAvatar(),
+        ]
+    );
+
+    Auth::login($user);
+
+    return redirect('/dashboard');
+});
+
 
 // Cargar rutas adicionales de autenticación
 require __DIR__ . '/auth.php';

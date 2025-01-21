@@ -8,50 +8,42 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    public function redirectToTwitter()
+    // Método para redirigir a GitHub
+    public function redirectToGitHub()
     {
-        return Socialite::driver('twitter')->redirect();
+        return Socialite::driver('github')->redirect();
     }
 
-    public function handleTwitterCallback()
+    // Método para manejar el callback de GitHub
+    public function handleGitHubCallback()
     {
         try {
-            $twitterUser = Socialite::driver('twitter')->user();
+            // Obtener los datos del usuario desde GitHub
+            $githubUser = Socialite::driver('github')->user();
 
-            // Verifica si el usuario ya existe en la base de datos
-            $authUser = User::where('twitter_id', $twitterUser->getId())->first();
+            // Verificar si el usuario ya existe en la base de datos
+            $authUser = User::where('github_id', $githubUser->getId())->first();
 
-            // Si el usuario ya existe, simplemente inicias sesión
             if ($authUser) {
+                // Si ya existe, iniciar sesión
                 Auth::login($authUser);
-                return redirect()->intended('dashboard'); // Redirige a donde necesites
             } else {
-                // Registra un nuevo usuario si no existe
+                // Si no existe, registrar un nuevo usuario
                 $authUser = User::create([
-                    'name' => $twitterUser->getName(),
-                    'email' => $twitterUser->getEmail() ?: $twitterUser->getId() . '@twitter.com',
-                    'twitter_id' => $twitterUser->getId(),
-                    'password' => bcrypt('default_password'), // Cambia según tu lógica
+                    'name' => $githubUser->getName(),
+                    'email' => $githubUser->getEmail(),
+                    'github_id' => $githubUser->getId(),
+                    'password' => bcrypt('default_password'), // Puedes cambiar esta lógica
                 ]);
-
+                // Iniciar sesión con el nuevo usuario
                 Auth::login($authUser);
-                return redirect()->intended('dashboard'); // Redirige a donde necesites
             }
-        } catch (\Laravel\Socialite\Two\InvalidStateException $e) {
-            // Manejo del caso cuando el usuario cancela la autorización
-            return redirect('/login')->with('error', 'Autorización cancelada. Por favor, inicia sesión o regístrate.');
+
+            // Redirigir al dashboard después de iniciar sesión
+            return redirect()->intended(route('dashboard')); // Redirige al dashboard
         } catch (\Exception $e) {
-            // Maneja cualquier otro error durante el proceso de autenticación
-            return redirect('/login')->with('error', 'Error al iniciar sesión con Twitter: ' . $e->getMessage());
+            return redirect('/login')->with('error', 'Error al iniciar sesión con GitHub: ' . $e->getMessage());
         }
     }
 
-    // Nuevo método para confirmar el inicio de sesión
-    public function confirmLogin($userId)
-    {
-        $authUser = User::findOrFail($userId);
-        Auth::login($authUser);
-        return redirect()->intended('dashboard'); // Redirige a donde necesites
-    }
 }
-

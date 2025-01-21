@@ -39,14 +39,16 @@
             </a>
         </div>
 
-        <!-- SSO Twitter -->
+        <!-- SSO Github -->
         <div
             class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
-            <a href="{{ url('auth/twitter') }}"
+            <a href="{{ url('auth/github') }}"
                 class="block w-full py-2 px-4 bg-blue-500 text-white font-semibold text-center rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50">
-                SSO con Twitter
+                SSO con Github
             </a>
         </div>
+
+
     </div>
 </body>
 

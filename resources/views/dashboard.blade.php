@@ -122,27 +122,6 @@
                 </div>
             </div>
 
-            <!-- Tarjeta de Actividades Recientes -->
-            <div class="card activities">
-                <div class="card-header">
-                    <h5>Actividades Recientes</h5>
-                </div>
-                <div class="card-body">
-                    @if(empty($recentActivities))
-                        <p class="text-center">No hay actividades recientes.</p>
-                    @else
-                        <ul class="activity-list">
-                            @foreach($recentActivities as $activity)
-                                <li class="activity-item">
-                                    <span>{{ $activity->description }}</span>
-                                    <span
-                                        class="activity-time">{{ \Carbon\Carbon::parse($activity->created_at)->diffForHumans() }}</span>
-                                </li>
-                            @endforeach
-                        </ul>
-                    @endif
-                </div>
-            </div>
         </div>
     </div>
 </x-app-layout>
