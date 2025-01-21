@@ -12,7 +12,7 @@
             font-size: 2rem;
             font-weight: bold;
             text-align: center;
-            color: #4a5568;
+            color: #ffffff;
             margin-bottom: 20px;
         }
 
